@@ -1,67 +1,155 @@
-# Mysql Query
-*((1)create database
-create database database name;
-use database database name;
+## SQL Queries
 
-(2)create primary key with auto_increment;
->>create table Employee(id int primary key not null auto_increment,First_Name varchar(30),Last_Name varchar(30),Address varchar(30),Salary varchar(30),Department varchar(30));
+1. **Rename Column in a Table**:
+    ```sql
+    ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+    ```
 
-(3)Add Column in table;
- >>alter table table name add column column name(30);
+2. **Add AUTO_INCREMENT in Existing Table**:
+    ```sql
+    ALTER TABLE table_name MODIFY COLUMN column_name INT AUTO_INCREMENT;
+    ```
 
-(4)add value in particular column;
->> update table name set columnn name  where id=1;
+3. **Change Column Data Type**:
+    ```sql
+    ALTER TABLE employee MODIFY COLUMN salary INT;
+    ```
 
-(5)change column name;
-  >>alter table table name rename column old column name to new column name;
-(6) add auto increment in existing table
- >> alter table name modify column column name auto_increment;
- (7)change column data types;
- alter table employee modify column salary int;
-(8)max salary
->>select max(column name) from employee;
-(8)min salary
->>select min(column name) from employee;
-(9)find average salary;
->>select avg(column name) As averagesalary from employee;
-(10)find distinct
->>select distinct address from employee;
-find count
->>select count(last_name) from employee;
-(11)find second highest salary in a table
->>SELECT MAX(SALARY) FROM employee WHERE SALARY < (SELECT MAX(SALARY) FROM employee);
-(12) how to set default value in table 
->>alter table table name alter column name set default default name;
-(13) find distinct value from a table
->>select  distinct State from employee where ID%2=0;
-(14)Find the difference between the total number of CITY entries in the table and
- the number of distinct CITY entries in the table.
- >>SELECT COUNT(CITY)-COUNT(DISTINCT CITY)FROM STATION;
- (15) select multiple character that start with same name;
- >> select First_Name from employee where First_Name like 'a%,'e%','i%';
- (16)SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1))
- NOT IN ('a','e','i','o','u') 
- OR LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u'); 
-(17)funtion 
-(1)  find ASCII value of specific column 
->>select ASCII(column name )as column name from table name;
-(2)find string length
->>select var_char(column name) as stringlength;
-()find max salary when we don't know about employee;
->>select salary from company limit 1 offset 4;
-(18)find second highest salary from a table;
->>select salary from company order by salary desc limit 1 offset 2;
-(19)find even id no
->>select * from company where Id%2=0;
-(20)find odd id no;
-select * from company where Id%2!=0;
-(21)insert multiple row in a single column
->>UPDATE company
-SET Incoming = CASE id WHEN 1 THEN "10:30" WHEN 2 THEN "8:30" ELSE Incoming END WHERE id IN (1, 2);
-(21) add column after column in table 
->>mysql> alter table company add column Holidays  varchar(30) after Outgoing;
-(22)add primary key  with auto_increment in existing table ;
->>alter table table name  add primary key auto_increment(id);
->>types of Join 
-(1) cross join
->>select * from table 1 name cross joint table name 2;
+4. **Find Maximum Salary**:
+    ```sql
+    SELECT MAX(salary) FROM employee;
+    ```
+
+5. **Find Minimum Salary**:
+    ```sql
+    SELECT MIN(salary) FROM employee;
+    ```
+
+6. **Find Average Salary**:
+    ```sql
+    SELECT AVG(salary) AS average_salary FROM employee;
+    ```
+
+7. **Find Distinct Addresses**:
+    ```sql
+    SELECT DISTINCT address FROM employee;
+    ```
+
+8. **Count of Last Names**:
+    ```sql
+    SELECT COUNT(last_name) FROM employee;
+    ```
+
+9. **Find Second Highest Salary**:
+    ```sql
+    SELECT MAX(salary) FROM employee WHERE salary < (SELECT MAX(salary) FROM employee);
+    ```
+
+10. **Set Default Value in a Table**:
+    ```sql
+    ALTER TABLE table_name ALTER COLUMN column_name SET DEFAULT default_value;
+    ```
+
+11. **Find Distinct Values where ID is Even**:
+    ```sql
+    SELECT DISTINCT state FROM employee WHERE id % 2 = 0;
+    ```
+
+12. **Find Difference Between Total CITY Entries and Distinct CITY Entries**:
+    ```sql
+    SELECT COUNT(city) - COUNT(DISTINCT city) FROM station;
+    ```
+
+13. **Select Multiple Characters that Start with Specific Letters**:
+    ```sql
+    SELECT first_name FROM employee WHERE first_name LIKE 'a%' OR first_name LIKE 'e%' OR first_name LIKE 'i%';
+    ```
+
+14. **Select Distinct CITY with Specific Conditions**:
+    ```sql
+    SELECT DISTINCT city FROM station WHERE LOWER(SUBSTR(city, 1, 1)) NOT IN ('a', 'e', 'i', 'o', 'u') OR LOWER(SUBSTR(city, LENGTH(city), 1)) NOT IN ('a', 'e', 'i', 'o', 'u');
+    ```
+
+15. **Find ASCII Value of Specific Column**:
+    ```sql
+    SELECT ASCII(column_name) AS column_name FROM table_name;
+    ```
+
+16. **Find String Length**:
+    ```sql
+    SELECT LENGTH(column_name) AS string_length FROM table_name;
+    ```
+
+17. **Find Max Salary When Employee is Unknown**:
+    ```sql
+    SELECT salary FROM company ORDER BY salary DESC LIMIT 1 OFFSET 4;
+    ```
+
+18. **Find Second Highest Salary from a Table**:
+    ```sql
+    SELECT salary FROM company ORDER BY salary DESC LIMIT 1 OFFSET 1;
+    ```
+
+19. **Find Even ID Numbers**:
+    ```sql
+    SELECT * FROM company WHERE id % 2 = 0;
+    ```
+
+20. **Find Odd ID Numbers**:
+    ```sql
+    SELECT * FROM company WHERE id % 2 != 0;
+    ```
+
+21. **Insert Multiple Rows in a Single Column**:
+    ```sql
+    UPDATE company SET Incoming = CASE id
+        WHEN 1 THEN '10:30'
+        WHEN 2 THEN '8:30'
+        ELSE Incoming
+    END WHERE id IN (1, 2);
+    ```
+
+22. **Add Column After Another Column in Table**:
+    ```sql
+    ALTER TABLE company ADD COLUMN holidays VARCHAR(30) AFTER outgoing;
+    ```
+
+23. **Add Primary Key with AUTO_INCREMENT in Existing Table**:
+    ```sql
+    ALTER TABLE table_name ADD PRIMARY KEY (id), MODIFY id INT AUTO_INCREMENT;
+    ```
+
+24. **Cross Join**:
+    ```sql
+    SELECT * FROM table1_name CROSS JOIN table2_name;
+    ```
+
+25. **Find Distinct Values where ID is Odd**:
+    ```sql
+    SELECT DISTINCT state FROM employee WHERE id % 2 != 0;
+    ```
+
+26. **Find Total Number of Records in a Table**:
+    ```sql
+    SELECT COUNT(*) FROM table_name;
+    ```
+
+27. **Find Records with NULL Values in a Specific Column**:
+    ```sql
+    SELECT * FROM table_name WHERE column_name IS NULL;
+    ```
+
+28. **Update Multiple Columns Based on Condition**:
+    ```sql
+    UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
+    ```
+
+29. **Delete Records Based on Condition**:
+    ```sql
+    DELETE FROM table_name WHERE condition;
+    ```
+
+30. **Add a New Column to a Table**:
+    ```sql
+    ALTER TABLE table_name ADD COLUMN new_column_name data_type;
+    ```
