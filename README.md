@@ -153,3 +153,7 @@
     ```sql
     ALTER TABLE table_name ADD COLUMN new_column_name data_type;
     ```
+30. ** how to find department with group a Table**:
+    ```sql
+     select department,count(*) as tech_mahindra from mahindra group by department;
+    
