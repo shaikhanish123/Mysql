@@ -153,7 +153,7 @@
     ```sql
     ALTER TABLE table_name ADD COLUMN new_column_name data_type;
     ```
-30. ** how to find department with group a Table**:
+30. ** full join **:
     ```sql
-     select department,count(*) as tech_mahindra from mahindra group by department;
+ select * from emp left join emp1 on emp.id=emp1.prodcutid union select * from emp right join emp1 on emp.id=emp1.prodcutid;
     
