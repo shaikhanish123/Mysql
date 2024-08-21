@@ -155,5 +155,9 @@
     ```
 30. ** full join **:
     select * from emp left join emp1 on emp.id=emp1.prodcutid union select * from emp right join emp1 on emp.id=emp1.prodcutid;
-
-    
+31.  ** trigger query **
+32.  
+    mysql> create trigger add_salary
+    -> before update on chiller
+    -> for each row
+    -> set new.salary=old.salary+5000;
