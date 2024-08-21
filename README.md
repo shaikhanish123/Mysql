@@ -154,6 +154,6 @@
     ALTER TABLE table_name ADD COLUMN new_column_name data_type;
     ```
 30. ** full join **:
-    ```sql
- select * from emp left join emp1 on emp.id=emp1.prodcutid union select * from emp right join emp1 on emp.id=emp1.prodcutid;
+    select * from emp left join emp1 on emp.id=emp1.prodcutid union select * from emp right join emp1 on emp.id=emp1.prodcutid;
+
     
